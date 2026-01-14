@@ -1,0 +1,13 @@
+@rootUrl=http://localhost:49752/v1
+
+### Create 
+POST {{rootUrl}}/
+Content-Type: application/json
+
+{
+    "customerId": "25b58f54-63bc-42da-8cf6-8162097e72c8",
+}
+
+### Finish 
+PATCH {{rootUrl}}/
+
