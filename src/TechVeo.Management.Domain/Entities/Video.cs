@@ -6,9 +6,16 @@ namespace TechVeo.Management.Domain.Entities;
 
 public class Video : Entity, IAggregateRoot
 {
-    public Video(Guid userId, int? snapshotCount, double? intervalSeconds, int width, int height)
+    public Video(
+        Guid userId,
+        string? fileName,
+        int? snapshotCount,
+        double? intervalSeconds,
+        int width,
+        int height)
     {
         UserId = userId;
+        FileName = fileName;
         Status = Status.Queued;
         CreateAt = DateTime.UtcNow;
         SnapshotCount = snapshotCount;
@@ -25,6 +32,7 @@ public class Video : Entity, IAggregateRoot
     public int Width { get; private set; }
     public int Height { get; private set; }
     public string? FileKey { get; private set; }
+    public string? FileName { get; private set; }
 
     public void SetWidth(int width)
     {

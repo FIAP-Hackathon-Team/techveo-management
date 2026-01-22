@@ -23,6 +23,7 @@ public class UploadVideoCommandHandler(
 
         var video = new Domain.Entities.Video(
             userId,
+            request.file.FileName,
             request.snapshotCount,
             request.intervalSeconds,
             request.width,
@@ -50,6 +51,6 @@ public class UploadVideoCommandHandler(
                     )
                 ), cancellationToken);
 
-        return new VideoDto(video.Id, "",request.snapshotCount, request.width, request.height);
+        return new VideoDto(video.Id, video.FileName, request.snapshotCount, request.width, request.height);
     }
 }

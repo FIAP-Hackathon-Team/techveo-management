@@ -15,7 +15,6 @@ public class ManagementsController(IMediator mediator) : ControllerBase
     private readonly IMediator _mediator = mediator;
 
     [HttpPost]
-    //[Authorize(Policy = "managements.write")]
     public async Task<IActionResult> CreateAsync([FromForm] UploadVideoRequest videos)
     {
 
