@@ -2,7 +2,7 @@ using TechVeo.Shared.Application.Events;
 
 namespace TechVeo.Management.Application.Events.Integration.Incoming;
 
-public record VideoSnapshotsGenerated(
+public record VideoProcessingStarted(
     Guid VideoId,
-    DateTime GeneratedAt
+    DateTime StartedAt
     ) : IIntegrationEvent;

@@ -2,7 +2,8 @@ using TechVeo.Shared.Application.Events;
 
 namespace TechVeo.Management.Application.Events.Integration.Incoming;
 
-public record VideoSnapshotsGenerated(
+public record VideoZipGenerated(
     Guid VideoId,
-    DateTime GeneratedAt
+    Guid ZipId,
+    string ZipUrl
     ) : IIntegrationEvent;

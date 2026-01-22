@@ -2,7 +2,7 @@ using TechVeo.Shared.Application.Events;
 
 namespace TechVeo.Management.Application.Events.Integration.Incoming;
 
-public record VideoSnapshotsGenerated(
+public record VideoProcessingFailedEvent(
     Guid VideoId,
-    DateTime GeneratedAt
-    ) : IIntegrationEvent;
+    DateTime FailedAt)
+    : IIntegrationEvent;

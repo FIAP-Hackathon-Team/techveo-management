@@ -37,7 +37,7 @@ public class UploadVideoCommandHandler(
         await videoRepository.AddAsync(video);
 
         await mediator.Publish(
-            new VideoUploadedEvent(
+            new VideoSnapshotsGenerated(
                 video.Id,
                 userId,
                 video.FileKey!,
