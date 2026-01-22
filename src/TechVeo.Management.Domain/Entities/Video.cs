@@ -1,4 +1,3 @@
-using System;
 using TechVeo.Management.Domain.Enums;
 using TechVeo.Shared.Domain.Entities;
 using TechVeo.Shared.Domain.Exceptions;
@@ -25,19 +24,34 @@ public class Video : Entity, IAggregateRoot
     public double? IntervalSeconds { get; private set; }
     public int Width { get; private set; }
     public int Height { get; private set; }
+    public string? FileKey { get; private set; }
 
     public void SetWidth(int width)
     {
-        if(width < 0)
+        if (width < 0)
+        {
             throw new DomainException("Width must be non-negative");
+        }
 
         Width = width;
+    }
+
+    public void SetFileKey(string fileKey)
+    {
+        if (string.IsNullOrWhiteSpace(fileKey))
+        {
+            throw new DomainException("File key must be provided");
+        }
+
+        FileKey = fileKey;
     }
 
     public void SetHeight(int height)
     {
         if (height < 0)
+        {
             throw new DomainException("Height must be non-negative");
+        }
 
         Height = height;
     }

@@ -1,5 +1,3 @@
-using System;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using TechVeo.Management.Domain.Entities;
 using TechVeo.Management.Domain.Repositories;
@@ -11,9 +9,10 @@ internal class VideoRepository(VideoContext dbContext) : IVideoRepository
 {
     private readonly DbSet<Video> _videos = dbContext.Videos;
 
-    public async Task<Guid> AddAsync(Video Video)
+    public async Task<Guid> AddAsync(Video video)
     {
-        throw new Exception();
+        await _videos.AddAsync(video);
+        return video.Id;
     }
 
     public Task<Video?> GetByIdAsync(Guid id)
