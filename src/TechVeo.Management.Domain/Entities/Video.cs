@@ -1,3 +1,4 @@
+using System;
 using TechVeo.Management.Domain.Enums;
 using TechVeo.Shared.Domain.Entities;
 using TechVeo.Shared.Domain.Exceptions;
