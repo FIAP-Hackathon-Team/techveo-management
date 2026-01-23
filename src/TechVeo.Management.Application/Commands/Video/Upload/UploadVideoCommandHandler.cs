@@ -1,7 +1,6 @@
 using MediatR;
 using TechVeo.Management.Application.Dto;
 using TechVeo.Management.Application.Events.Integration.Incoming;
-using TechVeo.Management.Application.Events.Integration.Outgoing;
 using TechVeo.Management.Domain.Repositories;
 using TechVeo.Shared.Application.Storage;
 
@@ -24,7 +23,7 @@ public class GetAllVideosByUserIdCommandHandler(
             request.IntervalSeconds,
             request.Width,
             request.Height);
-      
+
         using (var stream = request.File.OpenReadStream())
         {
             var videoFileKey = await videoStorage.UploadVideoAsync(stream, request.File.FileName, cancellationToken);
