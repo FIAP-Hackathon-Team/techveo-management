@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http.Features;
 using TechVeo.Management.Application;
 using TechVeo.Management.Infra;
 using TechVeo.Management.Infra.Persistence.Contexts;
@@ -5,6 +6,12 @@ using TechVeo.Shared.Presentation.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 {
+    var maxBodySize = 1L * 1024 * 1024 * 1024; // 1 GB;
+
+    builder.WebHost.ConfigureKestrel(options => options.Limits.MaxRequestBodySize = maxBodySize);
+    builder.Services.Configure<IISServerOptions>(options => options.MaxRequestBodySize = maxBodySize);
+    builder.Services.Configure<FormOptions>(options => options.MultipartBodyLengthLimit = maxBodySize);
+
     builder.Services.AddPresentation(builder.Configuration, new PresentationOptions
     {
         AddSwagger = true,
@@ -29,6 +36,19 @@ var app = builder.Build();
     app.UsePathBase("/api/management");
 
     app.UseForwardedHeaders();
+
+    // Allow large request bodies per-request (removes the per-request limit)
+    app.Use(async (context, next) =>
+    {
+        var maxFeature = context.Features.Get<IHttpMaxRequestBodySizeFeature>();
+        if (maxFeature != null)
+        {
+            // null means unlimited. Set to a numeric value (bytes) to limit.
+            maxFeature.MaxRequestBodySize = null;
+        }
+
+        await next();
+    });
 
     if (!app.Environment.IsDevelopment())
     {

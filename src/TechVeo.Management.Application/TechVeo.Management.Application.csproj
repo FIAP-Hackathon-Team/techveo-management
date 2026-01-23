@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net8</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
@@ -48,7 +49,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="TechVeo.Shared.Application" Version="2.0.3-rc" />
+	  <PackageReference Include="TechVeo.Shared.Application" Version="2.0.6-rc" />
 	</ItemGroup>
 
 	<ItemGroup>
