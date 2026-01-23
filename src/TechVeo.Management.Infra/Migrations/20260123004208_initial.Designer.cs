@@ -13,7 +13,7 @@ namespace TechVeo.Management.Infra.Migrations
 {
     [DbContext(typeof(VideoContext))]
     [Migration("20260123004208_initial")]
-    partial class initial
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
