@@ -15,9 +15,9 @@ internal class VideoRepository(VideoContext dbContext) : IVideoRepository
         return video.Id;
     }
 
-    public Task<Video?> GetByIdAsync(Guid id)
+    public async Task<Video?> GetByIdAsync(Guid id)
     {
-        throw new NotImplementedException();
+        return await _videos.FindAsync(id);
     }
 
     public async Task<List<Video>> GetByUserIdAsync(Guid id)

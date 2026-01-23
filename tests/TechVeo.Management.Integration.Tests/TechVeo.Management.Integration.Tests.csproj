@@ -12,6 +12,8 @@
   <ItemGroup>
     <PackageReference Include="Bogus" Version="35.6.3" />
     <PackageReference Include="FluentAssertions" Version="6.12.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.0" />
     <PackageReference Include="Moq" Version="4.20.70" />
     <PackageReference Include="xunit" Version="2.4.2" />
@@ -26,9 +28,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\TechVeo.Api.Application\TechVeo.Api.Application.csproj" />
-    <ProjectReference Include="..\..\src\TechVeo.Api.Domain\TechVeo.Api.Domain.csproj" />
-    <ProjectReference Include="..\..\src\TechVeo.Api.Infra\TechVeo.Api.Infra.csproj" />
+    <ProjectReference Include="..\..\src\Techveo.Management.Api\TechVeo.Management.Api.csproj" />
+    <ProjectReference Include="..\..\src\Techveo.Management.Infra\TechVeo.Management.Infra.csproj" />
   </ItemGroup>
 
 </Project>
