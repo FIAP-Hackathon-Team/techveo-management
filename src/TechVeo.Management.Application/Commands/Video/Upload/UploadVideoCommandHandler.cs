@@ -1,15 +1,12 @@
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using TechVeo.Management.Application.Dto;
 using TechVeo.Management.Application.Events.Integration.Outgoing;
 using TechVeo.Management.Domain.Repositories;
-using TechVeo.Shared.Application.Extensions;
 using TechVeo.Shared.Application.Storage;
 
 namespace TechVeo.Management.Application.Commands.Video.Upload;
 
-public class UploadVideoCommandHandler(
-    IHttpContextAccessor httpContextAccessor,
+public class GetAllVideosByUserIdCommandHandler(
     IVideoRepository videoRepository,
     IVideoStorage videoStorage,
     IMediator mediator
@@ -19,19 +16,17 @@ public class UploadVideoCommandHandler(
         UploadVideoCommand request,
         CancellationToken cancellationToken)
     {
-        var userId = httpContextAccessor.HttpContext!.User.GetUserId()!;
-
         var video = new Domain.Entities.Video(
-            userId,
-            request.file.FileName,
-            request.snapshotCount,
-            request.intervalSeconds,
-            request.width,
-            request.height);
+            request.UserId,
+            request.File.FileName,
+            request.SnapshotCount,
+            request.IntervalSeconds,
+            request.Width,
+            request.Height);
       
-        using (var stream = request.file.OpenReadStream())
+        using (var stream = request.File.OpenReadStream())
         {
-            var videoFileKey = await videoStorage.UploadVideoAsync(stream, request.file.FileName, cancellationToken);
+            var videoFileKey = await videoStorage.UploadVideoAsync(stream, request.File.FileName, cancellationToken);
             video.SetFileKey(videoFileKey);
         }
 
@@ -40,7 +35,7 @@ public class UploadVideoCommandHandler(
         await mediator.Publish(
             new VideoSnapshotsGenerated(
                 video.Id,
-                userId,
+                video.UserId,
                 video.FileKey!,
                 video.CreateAt,
                 new VideoUploadedMetadata(
@@ -51,6 +46,6 @@ public class UploadVideoCommandHandler(
                     )
                 ), cancellationToken);
 
-        return new VideoDto(video.Id, video.FileName, request.snapshotCount, request.width, request.height);
+        return new VideoDto(video.Id, video.Status, video.FileName, video.IntervalSeconds, video.SnapshotCount, video.Width, video.Height);
     }
 }

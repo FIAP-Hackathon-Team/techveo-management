@@ -1,5 +1,3 @@
-using System;
-using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using TechVeo.Management.Domain.Entities;
@@ -66,22 +64,7 @@ public class VideoContext : TechVeoContext
             property.SetColumnType("decimal(6, 2)");
         }
 
-        SeedContext(modelBuilder);
-
         base.OnModelCreating(modelBuilder);
-    }
-
-    private static void SeedContext(ModelBuilder modelBuilder)
-    {
-        modelBuilder.Entity<Domain.Entities.Video>()
-            .HasData(
-                new
-                {
-                },
-                new
-                {
-                }
-            );
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

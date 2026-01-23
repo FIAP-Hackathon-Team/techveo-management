@@ -4,6 +4,11 @@ using TechVeo.Management.Application.Dto;
 
 namespace TechVeo.Management.Application.Commands.Video.Upload;
 
-public record UploadVideoCommand(IFormFile file,
-        int? snapshotCount, double? intervalSeconds, int width, int height) : IRequest<VideoDto>
+public record UploadVideoCommand(
+        Guid UserId,
+        IFormFile File,
+        int? SnapshotCount,
+        double? IntervalSeconds,
+        int Width,
+        int Height) : IRequest<VideoDto>
 { }

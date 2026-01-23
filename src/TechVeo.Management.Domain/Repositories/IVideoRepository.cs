@@ -1,11 +1,10 @@
-using System;
-using System.Threading.Tasks;
+using TechVeo.Management.Domain.Entities;
 
 namespace TechVeo.Management.Domain.Repositories;
 
 public interface IVideoRepository
 {
-    Task<Guid> AddAsync(Entities.Video management);
-    Task<Entities.Video?> GetByIdAsync(Guid id);
-    Task<Entities.Video?> GetByUserIdAsync(Guid id);
+    Task<Guid> AddAsync(Video management);
+    Task<Video?> GetByIdAsync(Guid id);
+    Task<List<Video>> GetByUserIdAsync(Guid id);
 }

@@ -5,7 +5,6 @@ using TechVeo.Management.Domain.Repositories;
 using TechVeo.Management.Infra.Persistence.Contexts;
 using TechVeo.Management.Infra.Persistence.Repositories;
 using TechVeo.Shared.Infra.Extensions;
-using TechVeo.Shared.Infra.Storage;
 
 namespace TechVeo.Management.Infra;
 

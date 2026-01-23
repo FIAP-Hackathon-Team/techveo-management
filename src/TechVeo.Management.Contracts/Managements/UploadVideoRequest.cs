@@ -2,8 +2,9 @@ using Microsoft.AspNetCore.Http;
 
 namespace TechVeo.Management.Contracts.Managements;
 
-public record UploadVideoRequest(IFormFile file, int? snapshotCount, 
-    double? intervalSeconds, int width, int height)
-{
-    public record Item(Guid ProductId, int Quantity);
-}
+public record UploadVideoRequest(
+    IFormFile File,
+    int? SnapshotCount,
+    double? IntervalSeconds,
+    int Width,
+    int Height);

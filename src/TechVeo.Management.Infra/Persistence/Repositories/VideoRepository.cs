@@ -20,8 +20,8 @@ internal class VideoRepository(VideoContext dbContext) : IVideoRepository
         throw new NotImplementedException();
     }
 
-    public Task<Video?> GetByUserIdAsync(Guid id)
+    public async Task<List<Video>> GetByUserIdAsync(Guid id)
     {
-        throw new NotImplementedException();
+        return await _videos.Where(x => x.UserId == id).ToListAsync();
     }
 }
