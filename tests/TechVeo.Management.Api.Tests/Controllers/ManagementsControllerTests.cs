@@ -2,6 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using TechVeo.Management.Api.Controllers;
 using TechVeo.Management.Application.Commands.Video.Query;
+using TechVeo.Management.Application.Commands.Video.Upload;
 using TechVeo.Management.Application.Dto;
 using TechVeo.Management.Contracts.Managements;
 using TechVeo.Management.Domain.Enums;
