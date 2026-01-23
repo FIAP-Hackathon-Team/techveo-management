@@ -53,7 +53,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Techveo.Management.Domain\TechVeo.Management.Domain.csproj" />
+	  <ProjectReference Include="..\TechVeo.Management.Domain\TechVeo.Management.Domain.csproj" />
 	</ItemGroup>
 
 </Project>

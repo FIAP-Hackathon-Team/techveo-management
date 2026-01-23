@@ -58,8 +58,8 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           ${{ runner.temp }}/scanner/dotnet-sonarscanner begin \
-            /k:"TechChallenge-Team_techfood-order" \
-            /o:"techchallenge-team" \
+            /k:"FIAP-Hackathon-Team_techveo-management" \
+            /o:"fiap-hackathon-team" \
             /d:sonar.token="${{ env.SONAR_TOKEN }}" \
             /d:sonar.qualitygate.wait=true \
             /d:sonar.cs.opencover.reportsPaths="${{ env.COVERAGE_PATH }}" \
@@ -76,7 +76,7 @@ jobs:
       - name: Add GitHub Packages source
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: dotnet nuget add source --username ${{ github.actor }} --password ${{ env.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/TechChallenge-Team/index.json"
+        run: dotnet nuget add source --username ${{ github.actor }} --password ${{ env.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/FIAP-Hackathon-Team/index.json"
 
       - name: Restore dependencies
         run: dotnet restore
@@ -124,31 +124,31 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           docker build \
-            -t ${{ vars.DOCKERHUB_USERNAME }}/techfood-order-api:latest \
-            -t ${{ vars.DOCKERHUB_USERNAME }}/techfood-order-api:${{ github.sha }} \
-            -f src/TechFood.Order.Api/Dockerfile \
+            -t ${{ vars.DOCKERHUB_USERNAME }}/techveo-management-api:latest \
+            -t ${{ vars.DOCKERHUB_USERNAME }}/techveo-management-api:${{ github.sha }} \
+            -f src/TechVeo.Management.Api/Dockerfile \
             --build-arg GITHUB_TOKEN=${{ env.GITHUB_TOKEN }} \
             --build-arg GITHUB_ACTOR=${{ github.actor }} \
             .
 
       - name: Push Docker image (API)
         run: |
-          docker push ${{ vars.DOCKERHUB_USERNAME }}/techfood-order-api:latest
-          docker push ${{ vars.DOCKERHUB_USERNAME }}/techfood-order-api:${{ github.sha }}
+          docker push ${{ vars.DOCKERHUB_USERNAME }}/techveo-management-api:latest
+          docker push ${{ vars.DOCKERHUB_USERNAME }}/techveo-management-api:${{ github.sha }}
 
       - name: Build Docker image (Worker)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           docker build \
-            -t ${{ vars.DOCKERHUB_USERNAME }}/techfood-order-worker:latest \
-            -t ${{ vars.DOCKERHUB_USERNAME }}/techfood-order-worker:${{ github.sha }} \
-            -f src/TechFood.Order.Worker/Dockerfile \
+            -t ${{ vars.DOCKERHUB_USERNAME }}/techveo-management-worker:latest \
+            -t ${{ vars.DOCKERHUB_USERNAME }}/techveo-management-worker:${{ github.sha }} \
+            -f src/TechVeo.Management.Worker/Dockerfile \
             --build-arg GITHUB_TOKEN=${{ env.GITHUB_TOKEN }} \
             --build-arg GITHUB_ACTOR=${{ github.actor }} \
             .
 
       - name: Push Docker image (Worker)
         run: |
-          docker push ${{ vars.DOCKERHUB_USERNAME }}/techfood-order-worker:latest
-          docker push ${{ vars.DOCKERHUB_USERNAME }}/techfood-order-worker:${{ github.sha }}
+          docker push ${{ vars.DOCKERHUB_USERNAME }}/techveo-management-worker:latest
+          docker push ${{ vars.DOCKERHUB_USERNAME }}/techveo-management-worker:${{ github.sha }}
