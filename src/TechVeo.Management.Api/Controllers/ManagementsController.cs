@@ -2,7 +2,6 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TechVeo.Management.Application.Commands.Video.Query;
-using TechVeo.Management.Application.Commands.Video.Upload;
 using TechVeo.Management.Application.Dto;
 using TechVeo.Management.Contracts.Managements;
 using TechVeo.Shared.Application.Extensions;
