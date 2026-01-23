@@ -12,13 +12,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solution Items", "_Solutio
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechVeo.Management.Api", "src\Techveo.Management.Api\TechVeo.Management.Api.csproj", "{208CFACC-4452-71C2-46AC-49FA3F3F7B41}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechVeo.Management.Api", "src\TechVeo.Management.Api\TechVeo.Management.Api.csproj", "{208CFACC-4452-71C2-46AC-49FA3F3F7B41}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechVeo.Management.Application", "src\Techveo.Management.Application\TechVeo.Management.Application.csproj", "{7BEF474C-0B0D-9C02-466C-2C19B8DAC28F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechVeo.Management.Application", "src\TechVeo.Management.Application\TechVeo.Management.Application.csproj", "{7BEF474C-0B0D-9C02-466C-2C19B8DAC28F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechVeo.Management.Domain", "src\Techveo.Management.Domain\TechVeo.Management.Domain.csproj", "{5BEF75AD-1A3F-AA76-7E0B-08B4DCE94857}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechVeo.Management.Domain", "src\TechVeo.Management.Domain\TechVeo.Management.Domain.csproj", "{5BEF75AD-1A3F-AA76-7E0B-08B4DCE94857}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechVeo.Management.Infra", "src\Techveo.Management.Infra\TechVeo.Management.Infra.csproj", "{93FF01EC-F5A7-AE6B-7BF6-A4F800B1C485}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechVeo.Management.Infra", "src\TechVeo.Management.Infra\TechVeo.Management.Infra.csproj", "{93FF01EC-F5A7-AE6B-7BF6-A4F800B1C485}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechVeo.Management.Contracts", "src\TechVeo.Management.Contracts\TechVeo.Management.Contracts.csproj", "{74EF59DD-325C-3E63-C64F-49776D1B0DFB}"
 EndProject
