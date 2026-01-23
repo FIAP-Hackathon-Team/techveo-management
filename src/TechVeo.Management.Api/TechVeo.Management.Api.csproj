@@ -19,9 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Techveo.Management.Application\TechVeo.Management.Application.csproj" />
+    <ProjectReference Include="..\TechVeo.Management.Application\TechVeo.Management.Application.csproj" />
     <ProjectReference Include="..\TechVeo.Management.Contracts\TechVeo.Management.Contracts.csproj" />
-    <ProjectReference Include="..\Techveo.Management.Infra\TechVeo.Management.Infra.csproj" />
+    <ProjectReference Include="..\TechVeo.Management.Infra\TechVeo.Management.Infra.csproj" />
   </ItemGroup>
 
 </Project>
