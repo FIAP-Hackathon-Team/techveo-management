@@ -12,8 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\TechVeo.Management.Application\TechVeo.Management.Application.csproj" />
-    <ProjectReference Include="..\src\TechVeo.Management.Infra\TechVeo.Management.Infra.csproj" />
+    <ProjectReference Include="..\TechVeo.Management.Application\TechVeo.Management.Application.csproj" />
+    <ProjectReference Include="..\TechVeo.Management.Infra\TechVeo.Management.Infra.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="TechVeo.Shared.Worker" Version="2.0.6-rc" />
