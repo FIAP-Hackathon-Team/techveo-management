@@ -35,4 +35,8 @@
     <Folder Include="Events\Integration\Incoming\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Events\Integration\Incoming\" />
+  </ItemGroup>
+
 </Project>
