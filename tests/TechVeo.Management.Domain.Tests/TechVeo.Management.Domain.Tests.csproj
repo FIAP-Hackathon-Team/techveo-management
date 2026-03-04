@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Techveo.Management.Domain\TechVeo.Management.Domain.csproj" />
+    <ProjectReference Include="..\..\src\TechVeo.Management.Domain\TechVeo.Management.Domain.csproj" />
   </ItemGroup>
 
 </Project>

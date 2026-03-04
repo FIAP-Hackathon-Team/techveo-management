@@ -8,7 +8,7 @@ using TechVeo.Management.Domain.Repositories;
 
 namespace TechVeo.Management.Application.Events.Integration.Incoming.Handlers
 {
-    internal class VideoProcessingStartedHandler(IVideoRepository repo) : INotificationHandler<VideoProcessingStartedEvent>
+    internal class VideoProcessingStartedHandler(IVideoRepository repo, IMediator @object) : INotificationHandler<VideoProcessingStartedEvent>
     {
         public async Task Handle(VideoProcessingStartedEvent notification, CancellationToken cancellationToken)
         {
