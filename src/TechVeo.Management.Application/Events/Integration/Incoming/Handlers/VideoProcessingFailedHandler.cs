@@ -6,27 +6,24 @@ namespace TechVeo.Management.Application.Events.Integration.Incoming.Handlers
 {
     internal class VideoProcessingFailedHandler(
         IVideoRepository repo,
-        IMediator mediator) : IRequestHandler<VideoProcessingFailedEvent>
+        IMediator mediator) : INotificationHandler<VideoProcessingFailedEvent>
     {
-        public async Task<Unit> Handle(VideoProcessingFailedEvent notification, CancellationToken cancellationToken)
+        public async Task Handle(VideoProcessingFailedEvent notification, CancellationToken cancellationToken)
         {
             var video = await repo.GetByIdAsync(notification.VideoId);
 
             if (video is null)
-                return Unit.Value;
+                return;
 
             video.GetType().GetProperty("Status")?.SetValue(video, Domain.Enums.Status.Failed);
 
             await mediator.Publish(new SendEmailEvent
             (
-                "",
+                video.EmailAddress,
                 video.FileName ?? "",
                 Domain.Enums.Status.Failed,
                 ""
             ), cancellationToken);
-
-            return Unit.Value;
         }
-
     }
 }

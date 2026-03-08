@@ -18,6 +18,7 @@ public class UploadVideoCommandHandler(
     {
         var video = new Domain.Entities.Video(
             request.UserId,
+            request.EmailAddress,
             request.File.FileName,
             request.SnapshotCount,
             request.IntervalSeconds,

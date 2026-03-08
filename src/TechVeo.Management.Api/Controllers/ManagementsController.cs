@@ -24,6 +24,7 @@ public class ManagementsController(IMediator mediator) : ControllerBase
         var result = await _mediator.Send(
                             new UploadVideoCommand(
                                 userId,
+                                User.Identities.FirstOrDefault().Name,
                                 videos.File,
                                 videos.SnapshotCount,
                                 videos.IntervalSeconds,
