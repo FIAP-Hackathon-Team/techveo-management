@@ -1,16 +1,13 @@
-using MediatR;
-using TechVeo.Management.Application.Commands.Video.Query;
-using TechVeo.Management.Application.Dto;
-using TechVeo.Management.Domain.Repositories;
 using TechVeo.Management.Domain.Enums;
+using TechVeo.Management.Domain.Repositories;
 
-namespace TechVeo.Management.Application.Tests.Commands;
+namespace TechVeo.Management.Application.Tests.Query;
 
-public class GetAllVideosByUserIdCommandHandlerTests
+public class GetAllVideosQueryHandlerTests
 {
     private readonly Mock<IVideoRepository> _videoRepositoryMock;
 
-    public GetAllVideosByUserIdCommandHandlerTests()
+    public GetAllVideosQueryHandlerTests()
     {
         _videoRepositoryMock = new Mock<IVideoRepository>();
     }
@@ -100,11 +97,11 @@ public class GetAllVideosByUserIdCommandHandlerTests
         // Arrange
         var userId = Guid.NewGuid();
         var video1 = new Domain.Entities.Video(userId, "video1.mp4", null, null, 1920, 1080);
-        
+
         // Create second video with slight delay to ensure different creation times
         await Task.Delay(10);
         var video2 = new Domain.Entities.Video(userId, "video2.mp4", null, null, 1280, 720);
-        
+
         await Task.Delay(10);
         var video3 = new Domain.Entities.Video(userId, "video3.mp4", null, null, 3840, 2160);
 

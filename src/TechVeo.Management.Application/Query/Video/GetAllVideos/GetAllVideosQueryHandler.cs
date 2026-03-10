@@ -2,12 +2,12 @@ using MediatR;
 using TechVeo.Management.Application.Dto;
 using TechVeo.Management.Domain.Repositories;
 
-namespace TechVeo.Management.Application.Commands.Video.Query;
+namespace TechVeo.Management.Application.Query.Video.GetAllVideos;
 
-public class GetAllVideosByUserIdCommandHandler(IVideoRepository videoRepository) : IRequestHandler<GetAllVideosByUserIdCommand, List<VideoDto>>
+public class GetAllVideosQueryHandler(IVideoRepository videoRepository) : IRequestHandler<GetAllVideosQuery, List<VideoDto>>
 {
     public async Task<List<VideoDto>> Handle(
-        GetAllVideosByUserIdCommand request,
+        GetAllVideosQuery request,
         CancellationToken cancellationToken)
     {
 
