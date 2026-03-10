@@ -15,13 +15,13 @@ internal class VideoRepository(VideoContext dbContext) : IVideoRepository
         return video.Id;
     }
 
-    public async Task<Video?> GetByIdAsync(Guid id)
+    public async Task<Video?> GetByIdAsync(Guid userId, Guid id)
     {
-        return await _videos.FindAsync(id);
+        return await _videos.Where(x => x.UserId == userId && x.Id == id).FirstOrDefaultAsync();
     }
 
-    public async Task<List<Video>> GetByUserIdAsync(Guid id)
+    public async Task<List<Video>> GetByUserIdAsync(Guid userId)
     {
-        return await _videos.Where(x => x.UserId == id).ToListAsync();
+        return await _videos.Where(x => x.UserId == userId).ToListAsync();
     }
 }

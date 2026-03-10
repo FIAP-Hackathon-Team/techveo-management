@@ -2,8 +2,9 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TechVeo.Management.Application.Commands.Video.Upload;
-using TechVeo.Management.Application.Commands.Video.Query;
 using TechVeo.Management.Application.Dto;
+using TechVeo.Management.Application.Queries.GetAllVideos;
+using TechVeo.Management.Application.Queries.GetVideoById;
 using TechVeo.Management.Contracts.Managements;
 using TechVeo.Shared.Application.Extensions;
 
@@ -22,13 +23,13 @@ public class ManagementsController(IMediator mediator) : ControllerBase
         var userId = User.GetUserId()!;
 
         var result = await _mediator.Send(
-                            new UploadVideoCommand(
-                                userId,
-                                videos.File,
-                                videos.SnapshotCount,
-                                videos.IntervalSeconds,
-                                videos.Width,
-                                videos.Height));
+            new UploadVideoCommand(
+                userId,
+                videos.File,
+                videos.SnapshotCount,
+                videos.IntervalSeconds,
+                videos.Width,
+                videos.Height));
 
         return Ok(result);
     }
@@ -38,7 +39,22 @@ public class ManagementsController(IMediator mediator) : ControllerBase
     {
         var userId = User.GetUserId()!;
 
-        var result = await _mediator.Send(new GetAllVideosByUserIdCommand(userId));
+        var result = await _mediator.Send(new GetAllVideosQuery(userId));
+
+        return Ok(result);
+    }
+
+    [HttpGet]
+    [Route("{id:guid}")]
+    public async Task<ActionResult<VideoDto>> GetByIdAsync(Guid id)
+    {
+        var userId = User.GetUserId()!;
+        var result = await _mediator.Send(new GetVideoByIdQuery(userId, id));
+
+        if (result is null)
+        {
+            return NotFound();
+        }
 
         return Ok(result);
     }

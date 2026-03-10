@@ -1,7 +1,7 @@
 using Bogus;
 using Microsoft.Extensions.DependencyInjection;
-using TechVeo.Management.Domain.Repositories;
 using TechVeo.Management.Domain.Enums;
+using TechVeo.Management.Domain.Repositories;
 using TechVeo.Management.Integration.Tests.Fixtures;
 using TechVeo.Shared.Application.Storage;
 using TechVeo.Shared.Domain.Exceptions;
@@ -41,7 +41,7 @@ public class VideoWorkflowTests : IClassFixture<IntegrationTestFixture>
         var videoId = await _videoRepository.AddAsync(video);
         await _fixture.DbContext.SaveChangesAsync();
 
-        var retrievedVideo = await _videoRepository.GetByIdAsync(videoId);
+        var retrievedVideo = await _videoRepository.GetByIdAsync(userId, videoId);
 
         // Assert
         retrievedVideo.Should().NotBeNull();
@@ -93,7 +93,7 @@ public class VideoWorkflowTests : IClassFixture<IntegrationTestFixture>
         var videoId = await _videoRepository.AddAsync(video);
         await _fixture.DbContext.SaveChangesAsync();
 
-        var retrievedVideo = await _videoRepository.GetByIdAsync(videoId);
+        var retrievedVideo = await _videoRepository.GetByIdAsync(userId, videoId);
 
         // Assert
         retrievedVideo.Should().NotBeNull();
@@ -154,7 +154,7 @@ public class VideoWorkflowTests : IClassFixture<IntegrationTestFixture>
         var videoId = await _videoRepository.AddAsync(video);
         await _fixture.DbContext.SaveChangesAsync();
 
-        var retrievedVideo = await _videoRepository.GetByIdAsync(videoId);
+        var retrievedVideo = await _videoRepository.GetByIdAsync(userId, videoId);
 
         // Assert
         retrievedVideo.Should().NotBeNull();
