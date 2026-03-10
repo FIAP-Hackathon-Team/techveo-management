@@ -17,7 +17,7 @@ COPY ["src/TechVeo.Management.Application/TechVeo.Management.Application.csproj"
 COPY ["src/TechVeo.Management.Contracts/TechVeo.Management.Contracts.csproj", "TechVeo.Management.Contracts/"]
 COPY ["src/TechVeo.Management.Domain/TechVeo.Management.Domain.csproj", "TechVeo.Management.Domain/"]
 COPY ["src/TechVeo.Management.Infra/TechVeo.Management.Infra.csproj", "TechVeo.Management.Infra/"]
-RUN dotnet nuget add source --username "${GITHUB_ACTOR}" --password "${GITHUB_TOKEN}" --store-password-in-clear-text --name github "https://nuget.pkg.github.com/TechChallenge-Team/index.json"
+RUN dotnet nuget add source --username "${GITHUB_ACTOR}" --password "${GITHUB_TOKEN}" --store-password-in-clear-text --name github "https://nuget.pkg.github.com/FIAP-Hackathon-Team/index.json"
 RUN dotnet restore "./TechVeo.Management.Api/TechVeo.Management.Api.csproj"
 COPY src/ .
 WORKDIR /src/TechVeo.Management.Api

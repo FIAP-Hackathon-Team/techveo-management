@@ -13,7 +13,7 @@ public class UploadVideoCommandHandlerTests
     private readonly Mock<IVideoRepository> _videoRepositoryMock;
     private readonly Mock<IVideoStorage> _videoStorageMock;
     private readonly Mock<IMediator> _mediatorMock;
-    private readonly GetAllVideosByUserIdCommandHandler _handler;
+    private readonly UploadVideoCommandHandler _handler;
 
     public UploadVideoCommandHandlerTests()
     {
@@ -21,7 +21,7 @@ public class UploadVideoCommandHandlerTests
         _videoStorageMock = new Mock<IVideoStorage>();
         _mediatorMock = new Mock<IMediator>();
 
-        _handler = new GetAllVideosByUserIdCommandHandler(
+        _handler = new UploadVideoCommandHandler(
             _videoRepositoryMock.Object,
             _videoStorageMock.Object,
             _mediatorMock.Object);

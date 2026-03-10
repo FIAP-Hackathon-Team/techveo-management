@@ -4,5 +4,6 @@ namespace TechVeo.Management.Application.Events.Integration.Incoming;
 
 public record VideoProcessingCompletedEvent(
     Guid VideoId,
-    DateTime CompletedAt)
+    DateTime CompletedAt,
+    string Url)
     : IIntegrationEvent;

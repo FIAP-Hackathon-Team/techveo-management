@@ -49,11 +49,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="TechVeo.Shared.Application" Version="2.0.6-rc" />
+	  <PackageReference Include="TechVeo.Shared.Application" Version="2.0.9-rc" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Techveo.Management.Domain\TechVeo.Management.Domain.csproj" />
+	  <ProjectReference Include="..\TechVeo.Management.Domain\TechVeo.Management.Domain.csproj" />
 	</ItemGroup>
 
 </Project>

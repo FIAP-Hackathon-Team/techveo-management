@@ -18,7 +18,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.4" />
-    <PackageReference Include="TechVeo.Shared.Infra" Version="2.0.6-rc" />
+    <PackageReference Include="TechVeo.Shared.Infra" Version="2.0.9-rc" />
     <!--<PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="9.0.3" />-->
   </ItemGroup>
 
@@ -28,12 +28,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Techveo.Management.Application\TechVeo.Management.Application.csproj" />
-    <ProjectReference Include="..\Techveo.Management.Domain\TechVeo.Management.Domain.csproj" />
+    <ProjectReference Include="..\TechVeo.Management.Application\TechVeo.Management.Application.csproj" />
+    <ProjectReference Include="..\TechVeo.Management.Domain\TechVeo.Management.Domain.csproj" />
   </ItemGroup>
   
   <ItemGroup>
-    <Folder Include="Migrations\" />
     <Folder Include="Persistence\Storage\" />
   </ItemGroup>
 

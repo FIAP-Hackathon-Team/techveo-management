@@ -6,7 +6,7 @@ using TechVeo.Shared.Application.Storage;
 
 namespace TechVeo.Management.Application.Commands.Video.Upload;
 
-public class GetAllVideosByUserIdCommandHandler(
+public class UploadVideoCommandHandler(
     IVideoRepository videoRepository,
     IVideoStorage videoStorage,
     IMediator mediator
@@ -18,6 +18,7 @@ public class GetAllVideosByUserIdCommandHandler(
     {
         var video = new Domain.Entities.Video(
             request.UserId,
+            request.EmailAddress,
             request.File.FileName,
             request.SnapshotCount,
             request.IntervalSeconds,
