@@ -2,7 +2,7 @@ using MediatR;
 using TechVeo.Management.Application.Dto;
 using TechVeo.Management.Domain.Repositories;
 
-namespace TechVeo.Management.Application.Queries.GetVideoById;
+namespace TechVeo.Management.Application.Queries.Video.GetVideoById;
 
 public class GetVideoByIdQueryHandler(IVideoRepository videoRepository) : IRequestHandler<GetVideoByIdQuery, VideoDto?>
 {

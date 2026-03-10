@@ -1,5 +1,5 @@
 using TechVeo.Management.Application.Dto;
-using TechVeo.Management.Application.Queries.GetAllVideos;
+using TechVeo.Management.Application.Queries.Video.GetAllVideos;
 using TechVeo.Management.Domain.Enums;
 using TechVeo.Management.Domain.Repositories;
 

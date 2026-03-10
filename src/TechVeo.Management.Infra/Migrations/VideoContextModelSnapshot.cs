@@ -30,10 +30,6 @@ namespace TechVeo.Management.Infra.Migrations
                     b.Property<DateTime>("CreateAt")
                         .HasColumnType("datetime");
 
-                    b.Property<string>("EmailAddress")
-                        .IsRequired()
-                        .HasColumnType("varchar(50)");
-
                     b.Property<string>("FileKey")
                         .HasColumnType("varchar(50)");
 

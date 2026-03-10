@@ -1,7 +1,6 @@
-using TechVeo.Management.Application.Queries.GetVideoById;
-using TechVeo.Management.Domain.Repositories;
+using TechVeo.Management.Application.Queries.Video.GetVideoById;
 using TechVeo.Management.Domain.Entities;
-using TechVeo.Management.Domain.Enums;
+using TechVeo.Management.Domain.Repositories;
 
 namespace TechVeo.Management.Application.Tests.Queries;
 

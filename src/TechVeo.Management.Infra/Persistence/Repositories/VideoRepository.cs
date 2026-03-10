@@ -15,6 +15,11 @@ internal class VideoRepository(VideoContext dbContext) : IVideoRepository
         return video.Id;
     }
 
+    public async Task<Video?> GetByIdAsync(Guid id)
+    {
+        return await _videos.FindAsync(id);
+    }
+
     public async Task<Video?> GetByIdAsync(Guid userId, Guid id)
     {
         return await _videos.Where(x => x.UserId == userId && x.Id == id).FirstOrDefaultAsync();

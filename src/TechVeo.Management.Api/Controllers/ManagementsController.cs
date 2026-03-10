@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TechVeo.Management.Application.Commands.Video.Upload;
 using TechVeo.Management.Application.Dto;
-using TechVeo.Management.Application.Queries.GetAllVideos;
-using TechVeo.Management.Application.Queries.GetVideoById;
+using TechVeo.Management.Application.Queries.Video.GetAllVideos;
+using TechVeo.Management.Application.Queries.Video.GetVideoById;
 using TechVeo.Management.Contracts.Managements;
 using TechVeo.Shared.Application.Extensions;
 
