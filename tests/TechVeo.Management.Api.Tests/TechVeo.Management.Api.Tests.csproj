@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Techveo.Management.Api\TechVeo.Management.Api.csproj" />
+    <ProjectReference Include="..\..\src\TechVeo.Management.Api\TechVeo.Management.Api.csproj" />
   </ItemGroup>
 
 </Project>

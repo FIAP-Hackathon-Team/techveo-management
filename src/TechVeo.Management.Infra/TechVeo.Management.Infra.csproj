@@ -28,8 +28,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Techveo.Management.Application\TechVeo.Management.Application.csproj" />
-    <ProjectReference Include="..\Techveo.Management.Domain\TechVeo.Management.Domain.csproj" />
+    <ProjectReference Include="..\TechVeo.Management.Application\TechVeo.Management.Application.csproj" />
+    <ProjectReference Include="..\TechVeo.Management.Domain\TechVeo.Management.Domain.csproj" />
   </ItemGroup>
   
   <ItemGroup>

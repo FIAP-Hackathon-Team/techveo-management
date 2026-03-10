@@ -6,10 +6,12 @@ namespace TechVeo.Management.Application.Tests.Queries;
 public class GetAllVideosCommandHandlerTests
 {
     private readonly Mock<IVideoRepository> _videoRepositoryMock;
+    private readonly GetAllVideosByUserIdCommandHandler _handler;
 
     public GetAllVideosCommandHandlerTests()
     {
         _videoRepositoryMock = new Mock<IVideoRepository>();
+        _handler = new GetAllVideosByUserIdCommandHandler(_videoRepositoryMock.Object);
     }
 
     [Fact(DisplayName = "Should return all videos for a specific user")]
@@ -29,13 +31,15 @@ public class GetAllVideosCommandHandlerTests
             .Setup(x => x.GetByUserIdAsync(userId))
             .ReturnsAsync(videos);
 
+        var command = new GetAllVideosByUserIdCommand(userId);
+
         // Act
-        var result = await _videoRepositoryMock.Object.GetByUserIdAsync(userId);
+        var result = await _handler.Handle(command, CancellationToken.None);
 
         // Assert
         result.Should().NotBeNull();
         result.Should().HaveCount(3);
-        result.Should().AllSatisfy(v => v.Should().BeOfType<Domain.Entities.Video>());
+        result.Should().AllSatisfy(v => v.Should().BeOfType<VideoDto>());
 
         result[0].FileName.Should().Be("video1.mp4");
         result[1].FileName.Should().Be("video2.mp4");
@@ -56,8 +60,10 @@ public class GetAllVideosCommandHandlerTests
             .Setup(x => x.GetByUserIdAsync(userId))
             .ReturnsAsync(emptyVideos);
 
+        var command = new GetAllVideosByUserIdCommand(userId);
+
         // Act
-        var result = await _videoRepositoryMock.Object.GetByUserIdAsync(userId);
+        var result = await _handler.Handle(command, CancellationToken.None);
 
         // Assert
         result.Should().NotBeNull();
@@ -82,8 +88,10 @@ public class GetAllVideosCommandHandlerTests
             .Setup(x => x.GetByUserIdAsync(userId))
             .ReturnsAsync(videos);
 
+        var command = new GetAllVideosByUserIdCommand(userId);
+
         // Act
-        var result = await _videoRepositoryMock.Object.GetByUserIdAsync(userId);
+        var result = await _handler.Handle(command, CancellationToken.None);
 
         // Assert
         result.Should().HaveCount(3);
@@ -111,14 +119,16 @@ public class GetAllVideosCommandHandlerTests
             .Setup(x => x.GetByUserIdAsync(userId))
             .ReturnsAsync(videos);
 
+        var command = new GetAllVideosByUserIdCommand(userId);
+
         // Act
-        var result = await _videoRepositoryMock.Object.GetByUserIdAsync(userId);
+        var result = await _handler.Handle(command, CancellationToken.None);
 
         // Assert
         result.Should().HaveCount(3);
-        // Verify videos are ordered by creation date (earlier videos first)
-        Assert.True(result[0].CreateAt <= result[1].CreateAt);
-        Assert.True(result[1].CreateAt <= result[2].CreateAt);
+        result[0].FileName.Should().Be("video1.mp4");
+        result[1].FileName.Should().Be("video2.mp4");
+        result[2].FileName.Should().Be("video3.mp4");
     }
 }
 
