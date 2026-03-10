@@ -31,12 +31,4 @@
     <ProjectReference Include="..\..\src\TechVeo.Management.Infra\TechVeo.Management.Infra.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Events\Integration\Incoming\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Events\Integration\Incoming\" />
-  </ItemGroup>
-
 </Project>
