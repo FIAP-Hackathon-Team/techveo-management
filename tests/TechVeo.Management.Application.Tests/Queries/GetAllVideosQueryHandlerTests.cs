@@ -1,17 +1,19 @@
+using TechVeo.Management.Application.Dto;
+using TechVeo.Management.Application.Queries.GetAllVideos;
 using TechVeo.Management.Domain.Enums;
 using TechVeo.Management.Domain.Repositories;
 
 namespace TechVeo.Management.Application.Tests.Queries;
 
-public class GetAllVideosCommandHandlerTests
+public class GetAllVideosQueryHandlerTests
 {
     private readonly Mock<IVideoRepository> _videoRepositoryMock;
-    private readonly GetAllVideosByUserIdCommandHandler _handler;
+    private readonly GetAllVideosQueryHandler _handler;
 
-    public GetAllVideosCommandHandlerTests()
+    public GetAllVideosQueryHandlerTests()
     {
         _videoRepositoryMock = new Mock<IVideoRepository>();
-        _handler = new GetAllVideosByUserIdCommandHandler(_videoRepositoryMock.Object);
+        _handler = new GetAllVideosQueryHandler(_videoRepositoryMock.Object);
     }
 
     [Fact(DisplayName = "Should return all videos for a specific user")]
@@ -31,7 +33,7 @@ public class GetAllVideosCommandHandlerTests
             .Setup(x => x.GetByUserIdAsync(userId))
             .ReturnsAsync(videos);
 
-        var command = new GetAllVideosByUserIdCommand(userId);
+        var command = new GetAllVideosQuery(userId);
 
         // Act
         var result = await _handler.Handle(command, CancellationToken.None);
@@ -60,7 +62,7 @@ public class GetAllVideosCommandHandlerTests
             .Setup(x => x.GetByUserIdAsync(userId))
             .ReturnsAsync(emptyVideos);
 
-        var command = new GetAllVideosByUserIdCommand(userId);
+        var command = new GetAllVideosQuery(userId);
 
         // Act
         var result = await _handler.Handle(command, CancellationToken.None);
@@ -88,7 +90,7 @@ public class GetAllVideosCommandHandlerTests
             .Setup(x => x.GetByUserIdAsync(userId))
             .ReturnsAsync(videos);
 
-        var command = new GetAllVideosByUserIdCommand(userId);
+        var command = new GetAllVideosQuery(userId);
 
         // Act
         var result = await _handler.Handle(command, CancellationToken.None);
@@ -119,7 +121,7 @@ public class GetAllVideosCommandHandlerTests
             .Setup(x => x.GetByUserIdAsync(userId))
             .ReturnsAsync(videos);
 
-        var command = new GetAllVideosByUserIdCommand(userId);
+        var command = new GetAllVideosQuery(userId);
 
         // Act
         var result = await _handler.Handle(command, CancellationToken.None);

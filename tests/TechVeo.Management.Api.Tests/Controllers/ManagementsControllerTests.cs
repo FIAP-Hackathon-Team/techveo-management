@@ -6,7 +6,7 @@ using TechVeo.Management.Application.Dto;
 using TechVeo.Management.Contracts.Managements;
 using TechVeo.Management.Domain.Enums;
 using System.Security.Claims;
-using TechVeo.Management.Application.Queries.GetAllVideosByUserId;
+using TechVeo.Management.Application.Queries.GetAllVideos;
 
 namespace TechVeo.Management.Api.Tests.Controllers;
 
