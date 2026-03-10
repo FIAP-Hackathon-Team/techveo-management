@@ -27,9 +27,8 @@ namespace TechVeo.Management.Application.Events.Integration.Incoming.Handlers
 
             await mediator.Publish(new SendEmailEvent(
                 user.Email!,
-                video.FileName ?? "",
-                Status.Failed,
-                ""), cancellationToken);
+                video.FileName!,
+                Status.Failed), cancellationToken);
         }
     }
 }
