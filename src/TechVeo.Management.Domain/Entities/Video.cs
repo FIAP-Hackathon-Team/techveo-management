@@ -1,4 +1,3 @@
-using System;
 using TechVeo.Management.Domain.Enums;
 using TechVeo.Shared.Domain.Entities;
 using TechVeo.Shared.Domain.Exceptions;
@@ -63,5 +62,10 @@ public class Video : Entity, IAggregateRoot
         }
 
         Height = height;
+    }
+
+    public void SetStatus(Status status)
+    {
+        Status = status;
     }
 }

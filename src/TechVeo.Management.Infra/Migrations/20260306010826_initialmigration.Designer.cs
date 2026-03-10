@@ -12,8 +12,8 @@ using TechVeo.Management.Infra.Persistence.Contexts;
 namespace TechVeo.Management.Infra.Migrations
 {
     [DbContext(typeof(VideoContext))]
-    [Migration("20260123004208_initial")]
-    partial class Initial
+    [Migration("20260306010826_initialmigration")]
+    partial class initialmigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,6 +32,10 @@ namespace TechVeo.Management.Infra.Migrations
 
                     b.Property<DateTime>("CreateAt")
                         .HasColumnType("datetime");
+
+                    b.Property<string>("EmailAddress")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("FileKey")
                         .HasColumnType("varchar(50)");
