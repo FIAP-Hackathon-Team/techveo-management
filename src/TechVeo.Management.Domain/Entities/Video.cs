@@ -1,5 +1,3 @@
-using System;
-using System.Net.Mail;
 using TechVeo.Management.Domain.Enums;
 using TechVeo.Shared.Domain.Entities;
 using TechVeo.Shared.Domain.Exceptions;
@@ -10,7 +8,6 @@ public class Video : Entity, IAggregateRoot
 {
     public Video(
         Guid userId,
-        string emailAddress,
         string? fileName,
         int? snapshotCount,
         double? intervalSeconds,
@@ -18,7 +15,6 @@ public class Video : Entity, IAggregateRoot
         int height)
     {
         UserId = userId;
-        EmailAddress = emailAddress;
         FileName = fileName;
         Status = Status.Queued;
         CreateAt = DateTime.UtcNow;
@@ -29,7 +25,6 @@ public class Video : Entity, IAggregateRoot
     }
 
     public Guid UserId { get; private set; }
-    public string EmailAddress { get; private set; }
     public Status Status { get; private set; }
     public DateTime CreateAt { get; private set; }
     public int? SnapshotCount { get; private set; }
@@ -67,5 +62,10 @@ public class Video : Entity, IAggregateRoot
         }
 
         Height = height;
+    }
+
+    public void SetStatus(Status status)
+    {
+        Status = status;
     }
 }

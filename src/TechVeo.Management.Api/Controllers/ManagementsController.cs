@@ -2,7 +2,6 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TechVeo.Management.Application.Commands.Video.Upload;
-using TechVeo.Management.Application.Commands.Video.Query;
 using TechVeo.Management.Application.Dto;
 using TechVeo.Management.Application.Query.Video.GetAllVideos;
 using TechVeo.Management.Contracts.Managements;
@@ -23,14 +22,13 @@ public class ManagementsController(IMediator mediator) : ControllerBase
         var userId = User.GetUserId()!;
 
         var result = await _mediator.Send(
-                            new UploadVideoCommand(
-                                userId,
-                                User.Identities.FirstOrDefault().Name,
-                                videos.File,
-                                videos.SnapshotCount,
-                                videos.IntervalSeconds,
-                                videos.Width,
-                                videos.Height));
+            new UploadVideoCommand(
+                userId,
+                videos.File,
+                videos.SnapshotCount,
+                videos.IntervalSeconds,
+                videos.Width,
+                videos.Height));
 
         return Ok(result);
     }

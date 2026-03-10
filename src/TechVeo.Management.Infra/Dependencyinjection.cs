@@ -1,9 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using TechVeo.Management.Application.Services.Interfaces;
 using TechVeo.Management.Domain.Repositories;
 using TechVeo.Management.Infra.Persistence.Contexts;
 using TechVeo.Management.Infra.Persistence.Repositories;
+using TechVeo.Management.Infra.Services;
 using TechVeo.Shared.Infra.Extensions;
 
 namespace TechVeo.Management.Infra;
@@ -25,13 +27,11 @@ public static class DependencyInjection
         //Data
         services.AddScoped<IVideoRepository, VideoRepository>();
 
-        //
-        
-
         //Queries
         //services.AddScoped<IManagementQueryProvider, ManagementQueryProvider>();
 
         //Services
+        services.AddTechVeoClient<IAuthenticationService, AuthenticationService>("Authentication");
 
         return services;
     }

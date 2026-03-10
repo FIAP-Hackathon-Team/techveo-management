@@ -1,29 +1,35 @@
 using MediatR;
 using TechVeo.Management.Application.Events.Integration.Outgoing;
+using TechVeo.Management.Application.Services.Interfaces;
+using TechVeo.Management.Domain.Enums;
 using TechVeo.Management.Domain.Repositories;
 
 namespace TechVeo.Management.Application.Events.Integration.Incoming.Handlers
 {
     internal class VideoProcessingFailedHandler(
+        IMediator mediator,
         IVideoRepository repo,
-        IMediator mediator) : INotificationHandler<VideoProcessingFailedEvent>
+        IAuthenticationService authService
+            ) : INotificationHandler<VideoProcessingFailedEvent>
     {
         public async Task Handle(VideoProcessingFailedEvent notification, CancellationToken cancellationToken)
         {
             var video = await repo.GetByIdAsync(notification.VideoId);
 
             if (video is null)
+            {
                 return;
+            }
 
-            video.GetType().GetProperty("Status")?.SetValue(video, Domain.Enums.Status.Failed);
+            video.SetStatus(Status.Failed);
 
-            await mediator.Publish(new SendEmailEvent
-            (
-                video.EmailAddress,
+            var user = await authService.GetUserBydIdAsync(video.UserId, cancellationToken);
+
+            await mediator.Publish(new SendEmailEvent(
+                user.Email!,
                 video.FileName ?? "",
-                Domain.Enums.Status.Failed,
-                ""
-            ), cancellationToken);
+                Status.Failed,
+                ""), cancellationToken);
         }
     }
 }

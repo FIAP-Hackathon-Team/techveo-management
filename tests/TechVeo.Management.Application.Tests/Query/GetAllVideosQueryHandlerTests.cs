@@ -1,3 +1,5 @@
+using TechVeo.Management.Application.Dto;
+using TechVeo.Management.Application.Query.Video.GetAllVideos;
 using TechVeo.Management.Domain.Enums;
 using TechVeo.Management.Domain.Repositories;
 
@@ -6,20 +8,21 @@ namespace TechVeo.Management.Application.Tests.Query;
 public class GetAllVideosQueryHandlerTests
 {
     private readonly Mock<IVideoRepository> _videoRepositoryMock;
-    private readonly GetAllVideosByUserIdCommandHandler _handler;
+    private readonly GetAllVideosQueryHandler _handler;
 
     public GetAllVideosQueryHandlerTests()
     {
         _videoRepositoryMock = new Mock<IVideoRepository>();
-        _handler = new GetAllVideosByUserIdCommandHandler(_videoRepositoryMock.Object);
+        _handler = new GetAllVideosQueryHandler(_videoRepositoryMock.Object);
     }
 
     [Fact(DisplayName = "Should return all videos for a specific user")]
-    [Trait("Application", "GetAllVideosByUserIdCommandHandler")]
+    [Trait("Application", "GetAllVideosQueryHandler")]
     public async Task Handle_WithValidUserId_ShouldReturnAllUserVideos()
     {
         // Arrange
         var userId = Guid.NewGuid();
+        var userEmail = "user.email@techveo.com";
         var videos = new List<Domain.Entities.Video>
         {
             new Domain.Entities.Video(userId, "video1.mp4", 5, 10.5, 1920, 1080),
@@ -31,7 +34,7 @@ public class GetAllVideosQueryHandlerTests
             .Setup(x => x.GetByUserIdAsync(userId))
             .ReturnsAsync(videos);
 
-        var command = new GetAllVideosByUserIdCommand(userId);
+        var command = new GetAllVideosQuery(userId);
 
         // Act
         var result = await _handler.Handle(command, CancellationToken.None);
@@ -49,7 +52,7 @@ public class GetAllVideosQueryHandlerTests
     }
 
     [Fact(DisplayName = "Should return empty list when user has no videos")]
-    [Trait("Application", "GetAllVideosByUserIdCommandHandler")]
+    [Trait("Application", "GetAllVideosQuery")]
     public async Task Handle_WithUserHavingNoVideos_ShouldReturnEmptyList()
     {
         // Arrange
@@ -60,7 +63,7 @@ public class GetAllVideosQueryHandlerTests
             .Setup(x => x.GetByUserIdAsync(userId))
             .ReturnsAsync(emptyVideos);
 
-        var command = new GetAllVideosByUserIdCommand(userId);
+        var command = new GetAllVideosQuery(userId);
 
         // Act
         var result = await _handler.Handle(command, CancellationToken.None);
@@ -73,11 +76,12 @@ public class GetAllVideosQueryHandlerTests
     }
 
     [Fact(DisplayName = "Should return videos with different statuses")]
-    [Trait("Application", "GetAllVideosByUserIdCommandHandler")]
+    [Trait("Application", "GetAllVideosQueryHandler")]
     public async Task Handle_WithVideosDifferentStatuses_ShouldReturnAllVideos()
     {
         // Arrange
         var userId = Guid.NewGuid();
+        var email = "user.email@techveo.com";
         var queuedVideo = new Domain.Entities.Video(userId, "queued.mp4", null, null, 1920, 1080);
         var processingVideo = new Domain.Entities.Video(userId, "processing.mp4", null, null, 1920, 1080);
         var completedVideo = new Domain.Entities.Video(userId, "completed.mp4", null, null, 1920, 1080);
@@ -88,7 +92,7 @@ public class GetAllVideosQueryHandlerTests
             .Setup(x => x.GetByUserIdAsync(userId))
             .ReturnsAsync(videos);
 
-        var command = new GetAllVideosByUserIdCommand(userId);
+        var command = new GetAllVideosQuery(userId);
 
         // Act
         var result = await _handler.Handle(command, CancellationToken.None);
@@ -99,11 +103,12 @@ public class GetAllVideosQueryHandlerTests
     }
 
     [Fact(DisplayName = "Should return videos ordered by creation date")]
-    [Trait("Application", "GetAllVideosByUserIdCommandHandler")]
+    [Trait("Application", "GetAllVideosQueryHandler")]
     public async Task Handle_ShouldReturnVideosOrderedByCreationDate()
     {
         // Arrange
         var userId = Guid.NewGuid();
+        var userEmail = "user.email@techveo.com";
         var video1 = new Domain.Entities.Video(userId, "video1.mp4", null, null, 1920, 1080);
 
         // Create second video with slight delay to ensure different creation times
@@ -119,7 +124,7 @@ public class GetAllVideosQueryHandlerTests
             .Setup(x => x.GetByUserIdAsync(userId))
             .ReturnsAsync(videos);
 
-        var command = new GetAllVideosByUserIdCommand(userId);
+        var command = new GetAllVideosQuery(userId);
 
         // Act
         var result = await _handler.Handle(command, CancellationToken.None);

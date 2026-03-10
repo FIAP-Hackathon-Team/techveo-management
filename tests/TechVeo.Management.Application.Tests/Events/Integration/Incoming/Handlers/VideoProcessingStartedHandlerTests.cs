@@ -22,9 +22,7 @@ public class VideoProcessingStartedHandlerTests
         var repoMock = new Mock<IVideoRepository>();
         repoMock.Setup(r => r.GetByIdAsync(videoId)).ReturnsAsync(video);
 
-        var mediatorMock = new Mock<IMediator>();
-
-        var handler = new VideoProcessingStartedHandler(repoMock.Object, mediatorMock.Object);
+        var handler = new VideoProcessingStartedHandler(repoMock.Object);
         var evt = new VideoProcessingStartedEvent(videoId, DateTime.UtcNow);
 
         // Act
