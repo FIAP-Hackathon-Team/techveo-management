@@ -1,12 +1,12 @@
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using TechVeo.Management.Api.Controllers;
-using TechVeo.Management.Application.Commands.Video.Query;
 using TechVeo.Management.Application.Commands.Video.Upload;
 using TechVeo.Management.Application.Dto;
 using TechVeo.Management.Contracts.Managements;
 using TechVeo.Management.Domain.Enums;
 using System.Security.Claims;
+using TechVeo.Management.Application.Queries.GetAllVideosByUserId;
 
 namespace TechVeo.Management.Api.Tests.Controllers;
 
@@ -100,7 +100,7 @@ public class ManagementsControllerTests
         };
 
         _mediatorMock
-            .Setup(x => x.Send(It.IsAny<GetAllVideosByUserIdCommand>(), It.IsAny<CancellationToken>()))
+            .Setup(x => x.Send(It.IsAny<GetAllVideosQuery>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(expectedVideos);
 
         // Act
@@ -112,7 +112,7 @@ public class ManagementsControllerTests
         okResult!.Value.Should().BeEquivalentTo(expectedVideos);
 
         _mediatorMock.Verify(x => x.Send(
-            It.IsAny<GetAllVideosByUserIdCommand>(),
+            It.IsAny<GetAllVideosQuery>(),
             It.IsAny<CancellationToken>()),
             Times.Once);
     }
@@ -125,7 +125,7 @@ public class ManagementsControllerTests
         var expectedVideos = new List<VideoDto>();
 
         _mediatorMock
-            .Setup(x => x.Send(It.IsAny<GetAllVideosByUserIdCommand>(), It.IsAny<CancellationToken>()))
+            .Setup(x => x.Send(It.IsAny<GetAllVideosQuery>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(expectedVideos);
 
         // Act
