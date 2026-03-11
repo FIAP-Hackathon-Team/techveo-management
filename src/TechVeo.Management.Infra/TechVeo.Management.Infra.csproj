@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Persistence\ValueObjectMappings\**" />
+    <EmbeddedResource Remove="Persistence\ValueObjectMappings\**" />
+    <None Remove="Persistence\ValueObjectMappings\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.4" />
+    <PackageReference Include="TechVeo.Shared.Infra" Version="2.0.9-rc" />
+    <!--<PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="9.0.3" />-->
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="TechVeo.Management.Application.Tests" />
+    <InternalsVisibleTo Include="TechVeo.Management.Integration.Tests" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TechVeo.Management.Application\TechVeo.Management.Application.csproj" />
+    <ProjectReference Include="..\TechVeo.Management.Domain\TechVeo.Management.Domain.csproj" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+    <Folder Include="Persistence\Storage\" />
+  </ItemGroup>
+
+</Project>
