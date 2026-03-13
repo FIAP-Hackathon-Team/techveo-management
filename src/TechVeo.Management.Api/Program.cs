@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Http.Features;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
 using TechVeo.Management.Application;
 using TechVeo.Management.Infra;
 using TechVeo.Management.Infra.Persistence.Contexts;
@@ -19,6 +21,16 @@ var builder = WebApplication.CreateBuilder(args);
         SwaggerTitle = "TechVeo Management API V1",
         SwaggerDescription = "TechVeo Management API V1"
     });
+
+    builder.Services.AddOpenTelemetry()
+        .ConfigureResource(r => r.AddService("techveo-management-api"))
+        .WithTracing(tracing => tracing
+            .AddAspNetCoreInstrumentation()
+            .AddHttpClientInstrumentation()
+            .AddOtlpExporter(o =>
+            {
+                o.Endpoint = new Uri(builder.Configuration["OpenTelemetry:Endpoint"]!);
+            }));
 
     builder.Services.AddApplication();
 
@@ -59,12 +71,12 @@ var app = builder.Build();
     if (app.Environment.IsDevelopment())
     {
         app.UseDeveloperExceptionPage();
-
-        app.UseSwagger(options =>
-        {
-            options.OpenApiVersion = Microsoft.OpenApi.OpenApiSpecVersion.OpenApi2_0;
-        });
     }
+
+    app.UseSwagger(options =>
+    {
+        options.OpenApiVersion = Microsoft.OpenApi.OpenApiSpecVersion.OpenApi2_0;
+    });
 
     app.UseSwaggerUI();
 

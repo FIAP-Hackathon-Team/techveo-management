@@ -1,0 +1,41 @@
+version: "3.9"
+
+services:
+
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    container_name: techveo-jaeger
+    ports:
+      - "16686:16686"
+      - "4317:4317"
+      - "4318:4318"
+    environment:
+      COLLECTOR_OTLP_ENABLED: "true"
+    networks:
+      - techveo-net
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: techveo-grafana
+    ports:
+      - "3001:3000"
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: admin
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      GF_FEATURE_TOGGLES_ENABLE: "traceqlEditor"
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro
+    depends_on:
+      - jaeger
+    networks:
+      - techveo-net
+
+volumes:
+  sqlserver_data:
+  grafana_data:
+
+networks:
+  techveo-net:
+    driver: bridge
