@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="TechVeo.Shared.Domain" Version="2.0.9-rc" />
+    <PackageReference Include="TechVeo.Shared.Domain" Version="2.0.10-rc" />
   </ItemGroup>
 
   <ItemGroup>
