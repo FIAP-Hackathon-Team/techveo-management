@@ -27,13 +27,13 @@ namespace TechVeo.Management.Application.Events.Integration.Incoming.Handlers
             video.SetStatus(Status.Completed);
 
             var user = await authService.GetUserBydIdAsync(video.UserId, cancellationToken);
-            var videoUrl = await videoStorage.GetVideoDownloadUrlAsync(video.FileKey!, TimeSpan.FromHours(VideoUrlExpiresInHours), cancellationToken);
+            var zipUrl = await videoStorage.GetVideoDownloadUrlAsync(notification.ZipKey!, TimeSpan.FromHours(VideoUrlExpiresInHours), cancellationToken);
 
             await mediator.Publish(new SendEmailEvent(
                 user.Email!,
                 video.FileName!,
                 Status.Completed,
-                videoUrl), cancellationToken);
+                zipUrl), cancellationToken);
         }
     }
 }
