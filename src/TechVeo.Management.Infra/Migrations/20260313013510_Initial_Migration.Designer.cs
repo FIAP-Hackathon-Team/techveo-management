@@ -12,7 +12,7 @@ using TechVeo.Management.Infra.Persistence.Contexts;
 namespace TechVeo.Management.Infra.Migrations
 {
     [DbContext(typeof(VideoContext))]
-    [Migration("20260310021234_Initial_Migration")]
+    [Migration("20260313013510_Initial_Migration")]
     partial class Initial_Migration
     {
         /// <inheritdoc />
@@ -34,10 +34,10 @@ namespace TechVeo.Management.Infra.Migrations
                         .HasColumnType("datetime");
 
                     b.Property<string>("FileKey")
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("varchar(500)");
 
                     b.Property<string>("FileName")
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("varchar(500)");
 
                     b.Property<int>("Height")
                         .HasColumnType("int");
