@@ -31,10 +31,10 @@ namespace TechVeo.Management.Infra.Migrations
                         .HasColumnType("datetime");
 
                     b.Property<string>("FileKey")
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("varchar(500)");
 
                     b.Property<string>("FileName")
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("varchar(500)");
 
                     b.Property<int>("Height")
                         .HasColumnType("int");

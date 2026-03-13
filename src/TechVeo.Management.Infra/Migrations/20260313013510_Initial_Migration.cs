@@ -23,8 +23,8 @@ namespace TechVeo.Management.Infra.Migrations
                     IntervalSeconds = table.Column<double>(type: "float", nullable: true),
                     Width = table.Column<int>(type: "int", nullable: false),
                     Height = table.Column<int>(type: "int", nullable: false),
-                    FileKey = table.Column<string>(type: "varchar(50)", nullable: true),
-                    FileName = table.Column<string>(type: "varchar(50)", nullable: true),
+                    FileKey = table.Column<string>(type: "varchar(500)", nullable: true),
+                    FileName = table.Column<string>(type: "varchar(500)", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>

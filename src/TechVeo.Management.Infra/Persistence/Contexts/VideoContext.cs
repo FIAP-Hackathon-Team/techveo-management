@@ -26,7 +26,7 @@ public class VideoContext : TechVeoContext
         var stringProperties = properties.Where(p => p.ClrType == typeof(string));
         foreach (var property in stringProperties)
         {
-            var maxLength = property.GetMaxLength() ?? 50;
+            var maxLength = property.GetMaxLength() ?? 500;
 
             property.SetColumnType($"varchar({maxLength})");
         }
