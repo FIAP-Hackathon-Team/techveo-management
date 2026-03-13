@@ -29,7 +29,7 @@ var builder = WebApplication.CreateBuilder(args);
             .AddHttpClientInstrumentation()
             .AddOtlpExporter(o =>
             {
-                o.Endpoint = new Uri(builder.Configuration["OTEL_EXPORTER_OTLP_ENDPOINT"] ?? "http://localhost:4317");
+                o.Endpoint = new Uri(builder.Configuration["OpenTelemetry:Endpoint"]!);
             }));
 
     builder.Services.AddApplication();
